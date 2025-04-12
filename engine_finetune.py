@@ -123,9 +123,9 @@ def evaluate(
         output_binary = (output_ > 0.5).float()
 
         metric_logger.update(loss=loss.item())
-        targets[index, index + batch_size:]         = target.cpu().numpy()
-        predicts[index, index + batch_size:]        = output_.detach().cpu().numpy()
-        predicts_binary[index, index + batch_size:] = output_binary.detach().cpu().numpy()
+        targets[index: index + batch_size,:]         = target.cpu().numpy()
+        predicts[index: index + batch_size,:]        = output_.detach().cpu().numpy()
+        predicts_binary[index: index + batch_size,:] = output_binary.detach().cpu().numpy()
         index += batch_size
 
     tps = np.zeros(len(CLS))
@@ -183,7 +183,7 @@ def evaluate(
     print(f'F1: {f1:.4f}, ROC AUC: {roc_auc:.4f}, Score: {score:.4f}')
     print('Class |Accura|Precis|Recall|TP    |FN    |FP    |TN    |AUC   |Varian|Probab')
     for i, cls in enumerate(CLS):
-        print(f'{cls}     |{accuracies[i]:.4f}|{precisions[i]:.4f}|{recalls[i]:.4f}|{tps[i]:.5d} |{fns[i]:.5d} |{fps[i]:.5d} |{tns:.5d}|{aucs[i]:.4f}|{variances[i]:.4f}|{probs[i]:.4f}|{probs[i]:.4f}')
+        print(f'{cls}     |{accuracies[i]:.4f}|{precisions[i]:.4f}|{recalls[i]:.4f}|{int(tps[i]):05d} |{int(fns[i]):05d} |{int(fps[i]):05d} |{int(tns[i]):05d} |{aucs[i]:.4f}|{variances[i]:.4f}|{probs[i]:.4f}|')
     
     metric_logger.synchronize_between_processes()
     

@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
 from numpy.typing import NDArray
-import torch
-import torchvision.transforms as transforms
-import kornia
+# import torch
+# import torchvision.transforms as transforms
+# import kornia
 
 
 class Preprocess:
