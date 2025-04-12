@@ -81,7 +81,7 @@ SELECT
 FROM 
     fundus
 WHERE 
-    is_test = 1 AND low_quality_image = 0;
+    is_test = 1;
 '''
     )
 
