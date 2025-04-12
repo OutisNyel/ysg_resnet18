@@ -4,7 +4,6 @@ import torch.nn as nn
 
 class AsymmetricLossWithWeight(nn.Module):
     '''
-    Normalization with Softmax
     AsymmetricLoss * balance_weight
     
     Notice - optimized version, minimizes memory allocation and gpu uploading,
@@ -66,7 +65,17 @@ class AsymmetricLossWithWeight(nn.Module):
 
 if __name__ == '__main__':
     criterion = AsymmetricLossWithWeight()
-    x = torch.randn(5, 7) * 10
+    # x = torch.randn(5, 7) * 10
+    x = torch.tensor(
+        [
+            [-1, 1, 1, 1, 1, 1, 1],
+            [-1, 1, 1, 1, 1, 1, 1],
+            [1, 1, -1, -1, 1, -1, 1],
+            [1, 1, 1, -1, 1, -1, 1],
+            [1, 1, 1, 1, 1, 1, 1],
+        ]
+    ).float()
+    x *= 1e6
     y = torch.tensor(
         [
             [1, 0, 0, 0, 0, 0, 0],
