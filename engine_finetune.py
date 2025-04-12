@@ -181,7 +181,7 @@ def evaluate(
     # print
     print(f'val loss: {metric_logger.meters["loss"].global_avg}')
     print(f'F1: {f1:.4f}, ROC AUC: {roc_auc:.4f}, Score: {score:.4f}')
-    print('Class |Accura|Precis|Recall|TP    |FN    |FP    |TN    |AUC   |Varian|Probab')
+    print('Class |Accura|Precis|Recall|TP    |FN    |FP    |TN    |AUC   |Varian|Probab|')
     for i, cls in enumerate(CLS):
         print(f'{cls}     |{accuracies[i]:.4f}|{precisions[i]:.4f}|{recalls[i]:.4f}|{int(tps[i]):05d} |{int(fns[i]):05d} |{int(fps[i]):05d} |{int(tns[i]):05d} |{aucs[i]:.4f}|{variances[i]:.4f}|{probs[i]:.4f}|')
     
